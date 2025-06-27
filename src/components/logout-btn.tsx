@@ -24,6 +24,7 @@ const LogoutBtn = () => {
 
     setIsLoading(false);
   };
+
   return (
     <Button
       className="w-24"
@@ -31,7 +32,7 @@ const LogoutBtn = () => {
       onClick={handleLogOut}
       disabled={isLoading}
     >
-      {isLoading ? <Loader2 /> : "Log Out"}
+      {isLoading ? <Loader2 className="animate-spin" /> : "Log Out"}
     </Button>
   );
 };
