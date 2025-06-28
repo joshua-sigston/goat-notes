@@ -18,7 +18,7 @@ const Header = async () => {
     >
       <Link href="/" className="flex items-end gap-2">
         <Image
-          src="/goatius.png"
+          src="/goatius.jpg"
           height={60}
           width={60}
           alt="logo"
