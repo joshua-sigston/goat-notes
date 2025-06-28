@@ -5,9 +5,10 @@ import React from "react";
 import { Button } from "./ui/button";
 import DarkModeToggle from "./dark-mode-toggle";
 import LogoutBtn from "./logout-btn";
+import { getUser } from "@/auth/server";
 
-const Header = () => {
-  const user = true;
+const Header = async () => {
+  const user = await getUser();
   return (
     <header
       className="relative flex h-24 w-full items-center justify-between bg-popover px-3 sm:px-8"
@@ -34,7 +35,7 @@ const Header = () => {
         ) : (
           <>
             <Button asChild>
-              <Link href="/sign-up" className="hidden sm:block">
+              <Link href="/signup" className="hidden sm:block">
                 Sign Up
               </Link>
             </Button>
