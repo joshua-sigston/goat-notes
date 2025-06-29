@@ -9,6 +9,7 @@ import { getUser } from "@/auth/server";
 
 const Header = async () => {
   const user = await getUser();
+  console.log(user);
   return (
     <header
       className="relative flex h-24 w-full items-center justify-between bg-popover px-3 sm:px-8"
