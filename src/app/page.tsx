@@ -1,6 +1,8 @@
 import { getUser } from "@/auth/server";
+import AskAIBtn from "@/components/ask-ai-btn";
+import NewNoteBtn from "@/components/new-note-btn";
+import NoteTextInput from "@/components/note-text-input";
 import { prisma } from "@/db/prisma";
-import React from "react";
 
 type Props = {
   searchParams: Promise<{ [key: string]: string | string[] | undefined }>;
@@ -23,7 +25,11 @@ const HomePage = async ({ searchParams }: Props) => {
 
   return (
     <div className="flex h-full flex-col items-center gap-4">
-      <div className="flex w-full max-w-4xl justify-end gap-2"></div> HomePage
+      <div className="flex w-full max-w-4xl justify-end gap-2">
+        <AskAIBtn user={user} />
+        <NewNoteBtn user={user} />
+      </div>{" "}
+      <NoteTextInput noteId={noteId} startingNoteText={note?.text || ""} />
     </div>
   );
 };

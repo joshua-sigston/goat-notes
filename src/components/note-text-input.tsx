@@ -1,0 +1,46 @@
+"use client";
+
+import { useSearchParams } from "next/navigation";
+import { Textarea } from "./ui/textarea";
+import { ChangeEvent, useEffect } from "react";
+import { debounceTimeout } from "@/lib/constants";
+
+type Props = {
+  noteId: string;
+  startingNoteText: string;
+};
+
+let updateTimeout: NodeJS.Timeout;
+
+const NoteTextInput = ({ noteId, startingNoteText }: Props) => {
+  const noteIdParam = useSearchParams().get("noteId") || "";
+  const [noteText, setNoteText] = useNote();
+
+  useEffect(() => {
+    if (noteId === noteIdParam) {
+      setNoteText(startingNoteText);
+    }
+  }, [noteIdParam, noteId, setNoteText, startingNoteText]);
+
+  const handleUpdateNote = (e: ChangeEvent<HTMLTextAreaElement>) => {
+    const text = e.target.value;
+
+    setNoteText(text);
+
+    clearTimeout(updateTimeout);
+    updateTimeout = setTimeout(() => {
+      updateNoteAction(noteId, text);
+    }, debounceTimeout);
+  };
+
+  return (
+    <Textarea
+      value={noteText}
+      onChange={handleUpdateNote}
+      placeholder="Type your notes here"
+      className="custome-scrollbar mb-4 h-full max-w-4xl resize-none border-4 placeholder:text-muted-foreground focus-visible:ring-0 focus-visible:ring-offset-0"
+    />
+  );
+};
+
+export default NoteTextInput;
