@@ -31,7 +31,7 @@ export async function getUser() {
 
   const userObject = await auth.getUser();
 
-  console.log(userObject);
+  // console.log(userObject);
   if (userObject.error) {
     console.error(userObject.error);
     return null;

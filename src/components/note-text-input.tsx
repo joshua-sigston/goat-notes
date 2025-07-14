@@ -22,7 +22,7 @@ const NoteTextInput = ({ noteId, startingNoteText }: Props) => {
     if (noteId === noteIdParam) {
       setNoteText(startingNoteText);
     }
-  }, [noteIdParam, noteId, setNoteText, startingNoteText]);
+  }, [startingNoteText, noteIdParam, noteId, setNoteText]);
 
   const handleUpdateNote = (e: ChangeEvent<HTMLTextAreaElement>) => {
     const text = e.target.value;

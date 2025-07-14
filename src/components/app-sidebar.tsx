@@ -29,23 +29,24 @@ const AppSidebar = async () => {
 
   return (
     <Sidebar>
-      <SidebarContent className="custom-scrollbar"></SidebarContent>
-      <SidebarGroup>
-        <SidebarGroupLabel className="mb-2 mt-2 text-lg">
-          {user ? (
-            "Your Notes"
-          ) : (
-            <p>
-              <Link href="/login" className="underline">
-                Login
-              </Link>{" "}
-              to see your notes
-            </p>
-          )}
-        </SidebarGroupLabel>
-        {user && <SidebarGroupContent notes={notes} />}
-      </SidebarGroup>
-      <SidebarFooter />
+      <SidebarContent className="custom-scrollbar">
+        <SidebarGroup>
+          <SidebarGroupLabel className="mb-2 mt-2 text-lg">
+            {user ? (
+              "Your Notes"
+            ) : (
+              <p>
+                <Link href="/login" className="underline">
+                  Login
+                </Link>{" "}
+                to see your notes
+              </p>
+            )}
+          </SidebarGroupLabel>
+          {user && <SidebarGroupContent notes={notes} />}
+        </SidebarGroup>
+        <SidebarFooter />
+      </SidebarContent>
     </Sidebar>
   );
 };

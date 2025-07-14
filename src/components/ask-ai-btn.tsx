@@ -8,7 +8,7 @@ type Props = {
 };
 
 const AskAIBtn = ({ user }: Props) => {
-  console.log(user?.email);
+  // console.log(user?.email);
   return <div>AskAIBtn</div>;
 };
 
