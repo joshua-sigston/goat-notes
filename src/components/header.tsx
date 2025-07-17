@@ -6,6 +6,7 @@ import { Button } from "./ui/button";
 import DarkModeToggle from "./dark-mode-toggle";
 import LogoutBtn from "./logout-btn";
 import { getUser } from "@/auth/server";
+import { SidebarTrigger } from "./ui/sidebar";
 
 const Header = async () => {
   const user = await getUser();
@@ -17,6 +18,7 @@ const Header = async () => {
         boxShadow: shadow,
       }}
     >
+      <SidebarTrigger className="absolute left-1 top-1" />
       <Link href="/" className="flex items-end gap-2">
         <Image
           src="/goatius.jpg"
