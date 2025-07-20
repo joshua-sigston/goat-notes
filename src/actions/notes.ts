@@ -3,6 +3,26 @@ import { getUser } from "@/auth/server";
 import { prisma } from "@/db/prisma";
 import { handleError } from "@/lib/utils";
 
+export const createNoteAction = async (noteId: string) => {
+  try {
+    const user = await getUser();
+
+    if (!user) throw new Error("You must be logged in to update note");
+
+    await prisma.note.create({
+      data: {
+        id: noteId,
+        authorId: user.id,
+        text: "",
+      },
+    });
+
+    return { errorMessage: null };
+  } catch (error) {
+    return handleError(error);
+  }
+};
+
 export const updateNoteAction = async (noteId: string, text: string) => {
   console.log("updateNoteAction");
   try {
@@ -23,17 +43,17 @@ export const updateNoteAction = async (noteId: string, text: string) => {
   }
 };
 
-export const createNoteAction = async (noteId: string) => {
+export const deleteNoteAction = async (noteId: string) => {
+  console.log("deleteNoteAction");
   try {
     const user = await getUser();
 
     if (!user) throw new Error("You must be logged in to update note");
 
-    await prisma.note.create({
-      data: {
+    await prisma.note.delete({
+      where: {
         id: noteId,
         authorId: user.id,
-        text: "",
       },
     });
 
