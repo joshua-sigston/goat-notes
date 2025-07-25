@@ -12,11 +12,12 @@ type Props = {
 };
 
 const SelectNoteBtn = ({ note }: Props) => {
-  const [localNoteText, setLocalNoteText] = useState("");
+  const [localNoteText, setLocalNoteText] = useState(note.text);
   const [shouldUseGlobalNoteText, setShouldUseGlobalNotetext] = useState(false);
   const noteId = useSearchParams().get("noteId") || "";
   const { noteText: selectedNoteText } = useNote();
   const blankNoteText = "EMPTY NOTE";
+  console.log("select note btn", selectedNoteText);
 
   let noteText = localNoteText || blankNoteText;
 
